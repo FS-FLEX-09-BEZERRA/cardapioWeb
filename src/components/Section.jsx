@@ -1,8 +1,11 @@
 
-const Section = (props) => {
+const Section = ({titulo, children}) => {
   return (
     <div>
-      {props.titulo}
+      <h1 className="text-center text-3xl font-bold">{titulo}</h1>
+      <div className="">
+        {children}
+      </div>
     </div>
   )
 }
