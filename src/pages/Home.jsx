@@ -8,9 +8,8 @@ import temakisalmao from "../assets/temakisalmao.png"
 import combinado1 from "../assets/combinado1.png"
 import combinado2 from "../assets/combinado2.png"
 import combinado3 from "../assets/combinado3.png"
-
-const Home = () => {
-  const produtos = [
+ 
+export const produtos = [
     {
       id: 1,
       desc: "Temaki Hot",
@@ -61,6 +60,8 @@ const Home = () => {
       categoria: "combinados"
     },
   ]
+const Home = () => {
+ 
 
   return (
     <>
