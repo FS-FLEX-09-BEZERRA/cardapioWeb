@@ -6,7 +6,7 @@ const ListaProduto = ({produtos, categoria}) => {
   })
   console.log(produtos)
   return (
-    <div>
+    <div className="flex justify-center gap-2 flex-wrap ">
       {produtosFiltrados.map((produto, index)=> (
         <CardProduto key={index} produto={produto} />
       ))}
