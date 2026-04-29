@@ -74,6 +74,7 @@ const Home = () => {
       <Section titulo="Temakis">
         <ListaProduto produtos={produtos} categoria="temakis" />
       </Section>
+
     </>
   )
   
