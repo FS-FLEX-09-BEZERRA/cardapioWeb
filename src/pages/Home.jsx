@@ -65,7 +65,7 @@ const Home = () => {
 
   return (
     <>
-    <h1>Página Home</h1>
+    
     <Section titulo="Ofertas de Hoje">
       <ListaProduto produtos={produtos} categoria="oferta"/>
     </Section>
