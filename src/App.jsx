@@ -16,6 +16,7 @@ const App = () => {
         <Route path="/carrinho" element={<Carrinho/>}/>
       </Routes>
     </BrowserRouter>
+    
   </>
   )
 }
