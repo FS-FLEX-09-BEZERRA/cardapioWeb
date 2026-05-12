@@ -37,7 +37,7 @@ const Home = () => {
     <>
       {loading ? <p>Carregando...</p> : (
         <>
-          <Section titulo="Ofertas de Hoje">
+          <Section titulo="Ofertas de Hoje" textLeft>
             <ListaProduto produtos={produtos} categoria="oferta" />
           </Section>
           <Section titulo="Combinados">

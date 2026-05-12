@@ -1,17 +1,38 @@
 
 import * as Dialog from "@radix-ui/react-dialog";
 import ListaProduto from "./ListaProduto.jsx";
-import { produtos } from "../pages/Home.jsx";
+import { useEffect, useState } from "react";
 
 const Header = () => {
+  const [produtos, setProdutos] = useState([])
+
+  const menu = ["Promoções", "Horários", "Pedidos", "Login"]
+  useEffect(() => {
+    fetch("http://localhost:3000/produtos")
+      .then(res => (res.json()))
+      .then(data => {
+        setProdutos(data)
+      })
+      .catch((error) => {
+        console.error("Erro na requisição", error)
+      })
+  }, [])
+
 
   return (
-    <Dialog.Root>
-      <Dialog.Trigger className="w-32 mx-auto py-2 ml-2 shadow-sm rounded-md bg-indigo-600 text-white mt-4 flex items-center justify-center">
-        PROMOÇÕES
+    <>
+    <header className="bg-black px-20 py-15 flex justify-end relative mb-30">
+      <div className="rounded-full border-6 border-red-600 w-40 h-40 flex justify-center items-center absolute bg-black left-10">
+        <h1 className="text-white font-bold text-2xl px-4 text-center">SUSHI DIGITAL</h1>
+      </div>
+    {menu.map((item)=> (
+      <Dialog.Root>
+        <Dialog.Trigger className="w-32 text-white hover:underline underline-offset-8 cursor-pointer">
+        {item}
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 w-full h-full bg-black opacity-40" />
+        
         <Dialog.Content className="fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-full max-w-lg mx-auto px-4">
           <div className="bg-white rounded-md shadow-lg">
             <div className="flex items-center justify-between p-4 border-b">
@@ -40,6 +61,9 @@ const Header = () => {
         </Dialog.Content>
       </Dialog.Portal>
     </Dialog.Root>
+    ))}
+   </header>
+    </>
   );
 };
 
