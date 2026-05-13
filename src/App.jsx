@@ -1,22 +1,25 @@
-import { BrowserRouter, Route, Routes} from "react-router-dom"
+import { BrowserRouter, Route, Routes } from "react-router-dom"
 import './App.css'
 import Home from "./pages/Home"
-import Header from "./components/Header"
 import Login from "./pages/Login"
 import Carrinho from "./pages/Carrinho"
+import Layout from "./components/Layout"
 
 const App = () => {
   return (
     <>
-    <Header/>
-    <BrowserRouter>
-      <Routes>
-        <Route index path="/login" element={<Login/>} />
-        <Route path="/" element={<Home/>}/>
-        <Route path="/carrinho" element={<Carrinho/>}/>
-      </Routes>
-    </BrowserRouter>
-  </>
+      <BrowserRouter>
+        <main>
+          <Routes>
+            <Route index path="/login" element={<Login />} />
+            <Route element={<Layout/>}>
+              <Route path="/" element={<Home />} />
+              <Route path="/carrinho" element={<Carrinho />} />
+            </Route>
+          </Routes>
+        </main>
+      </BrowserRouter>
+    </>
   )
 }
 

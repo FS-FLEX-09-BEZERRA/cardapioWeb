@@ -1,0 +1,19 @@
+# Criar Projeto
+
+  npm create vite@latest . (gera um template do Vite - biblioteca que trabalho com React)
+  Gera perguntas:
+  - nome do Projeto 
+  - biblioteca (React)
+  - linguagem (JavaScript/Typescript)
+
+  -> O Ponto "." após o comando gera a criação do template sem criar uma nova pasta
+
+---------------------------------------------
+
+# Continuação da criação/ Instalação de um Projeto existente
+
+  2. Instalação das dependências - npm i / npm install 
+
+  3. Rodar a aplicação - npm run dev
+
+

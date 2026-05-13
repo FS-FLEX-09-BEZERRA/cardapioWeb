@@ -1,83 +1,56 @@
 
 import ListaProduto from "../components/ListaProduto.jsx"
 import Section from "../components/Section"
-import temakihot from "../assets/temakihot.png"
-import temakiskin from "../assets/temakiskin.png"
-import temakicam from "../assets/temakicam.png"
-import temakisalmao from "../assets/temakisalmao.png"
-import combinado1 from "../assets/combinado1.png"
-import combinado2 from "../assets/combinado2.png"
-import combinado3 from "../assets/combinado3.png"
- 
-export const produtos = [
-    {
-      id: 1,
-      desc: "Temaki Hot",
-      img: temakihot,
-      valor: 39.90,
-      categoria: "oferta"
-    },
-    {
-      id: 2,
-      desc: "Temaki Skin",
-      img: temakiskin,
-      valor: 39.90,
-      categoria: "temakis"
-    },
-    {
-      id: 3,
-      desc: "Temaki Salmão",
-      img: temakisalmao,
-      valor: 39.90,
-      categoria: "temakis"
-    },
-    {
-      id: 4,
-      desc: "Temaki Camarão",
-      img: temakicam,
-      valor: 39.90,
-      categoria: "temakis"
-    },
-    {
-      id: 5,
-      desc: "Combinado 30 peças",
-      img: combinado1,
-      valor: 40.00,
-      categoria: "combinados"
-    },
-    {
-      id: 5,
-      desc: "Combinado 40 peças",
-      img: combinado2,
-      valor: 50.00,
-      categoria: "combinados"
-    },
-    {
-      id: 6,
-      desc: "Combinado 60 peças",
-      img: combinado3,
-      valor: 70.00,
-      categoria: "combinados"
-    },
-  ]
+// import temakihot from "../assets/temakihot.png"
+// import temakiskin from "../assets/temakiskin.png"
+// import temakicam from "../assets/temakicam.png"
+// import temakisalmao from "../assets/temakisalmao.png"
+// import combinado1 from "../assets/combinado1.png"
+// import combinado2 from "../assets/combinado2.png"
+// import combinado3 from "../assets/combinado3.png"
+import { useEffect, useState } from "react"
+
+
+//Hook - useState: usado para manipular estados de uma constante
+// uso: const [currentValue, function] = useState(initialValue)
+
 const Home = () => {
- 
+  const [produtos, setProdutos] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  //useEffect - sem dependência, com dependência vazia, com dependência de parâmetro
+
+  useEffect(() => {
+    fetch("http://localhost:3000/produtos")
+      .then(res => (res.json()))
+      .then(data => {
+        setProdutos(data)
+        setLoading(false)
+      })
+      .catch((error) => {
+        console.error("Erro na requisição", error)
+      })
+  }, [])
+
 
   return (
     <>
-    
-    <Section titulo="Ofertas de Hoje">
-      <ListaProduto produtos={produtos} categoria="oferta"/>
-    </Section>
-      <Section titulo="Combinados">
-        <ListaProduto produtos={produtos} categoria="combinados" />
-      </Section>
-      <Section titulo="Temakis">
-        <ListaProduto produtos={produtos} categoria="temakis" />
-      </Section>
+      {loading ? <p>Carregando...</p> : (
+        <>
+          <Section titulo="Ofertas de Hoje" textLeft>
+            <ListaProduto produtos={produtos} categoria="oferta" />
+          </Section>
+          <Section titulo="Combinados">
+            <ListaProduto produtos={produtos} categoria="combinados" />
+          </Section>
+          <Section titulo="Temakis">
+            <ListaProduto produtos={produtos} categoria="temakis" />
+          </Section>
+        </>
+      )}
     </>
   )
-  
+
 }
 
 export default Home
